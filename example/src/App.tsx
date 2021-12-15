@@ -42,8 +42,6 @@ function App() {
 
   useLayoutEffect(() => {
     setTimeout(() => {
-      console.log("drawing now");
-
       onSubmitCommandString("C 20 4");
       onSubmitCommandString("L 1 2 6 2");
       onSubmitCommandString("L 6 3 6 4");
@@ -51,8 +49,6 @@ function App() {
       onSubmitCommandString("B 10 3 o");
     }, 500);
   }, []);
-
-  console.log("commandHistory", commandHistory);
 
   return (
     <div className={styles.wrapper}>
@@ -94,8 +90,9 @@ function App() {
         )}
       </div>
       <div ref={commandHistoryRef} className={styles.commandHistoryWrapper}>
-        {commandHistory.map((history) => (
+        {commandHistory.map((history, historyIndex) => (
           <div
+            key={`history_${historyIndex}`}
             style={{
               ...(history.color ? { color: history.color } : {}),
             }}

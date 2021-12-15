@@ -17,9 +17,7 @@ class Canvas {
     return this._canvasGrid[0]?.length || 0;
   }
 
-  constructor() {
-    console.log("this._canvasGrid", this._canvasGrid);
-  }
+  constructor() {}
 
   addCanvasGridUpdateListener(fn: CanvasGridUpdateFunction) {
     this._onCanvasGridUpdateFns.push(fn);
