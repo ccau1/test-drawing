@@ -3,9 +3,11 @@ import lineCommand from "./lineCommand";
 
 export default {
   run: ({ canvas, canvasGrid, args }) => {
+    // args must of length 4
     if (args.length !== 4)
       throw new Error(`argument length expected 4, received ${args.length}`);
 
+    // extract fields from args
     const x1 = args[0],
       y1 = args[1],
       x2 = args[2],

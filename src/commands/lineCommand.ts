@@ -1,19 +1,19 @@
 import { Command } from "..";
-import { boundNumber, sortNumbers } from "../utils";
+import { boundNumber } from "../utils";
 
 export default {
   run: ({ canvasGrid, args }) => {
     if (args.length !== 4)
       throw new Error(`argument length expected 4, received ${args.length}`);
 
-    const [x1, x2] = sortNumbers([
+    const [x1, x2] = [
       parseInt(args[0], 10) - 1,
       parseInt(args[2], 10) - 1,
-    ]);
-    const [y1, y2] = sortNumbers([
+    ].sort((a, b) => a - b);
+    const [y1, y2] = [
       parseInt(args[1], 10) - 1,
       parseInt(args[3], 10) - 1,
-    ]);
+    ].sort((a, b) => a - b);
 
     const isHorizontal = y1 === y2;
 

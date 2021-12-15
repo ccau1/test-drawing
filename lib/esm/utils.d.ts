@@ -10,13 +10,6 @@ export declare const boundNumber: (number: number, boundary: {
     min?: number;
 }) => number;
 /**
- * sort number by asc or desc
- * @param nums {number[]} numbers to sort
- * @param type {'asc' | 'desc'} ascending or descending (default: asc)
- * @returns {number[]} sorted numbers
- */
-export declare const sortNumbers: (nums: number[], type?: "asc" | "desc") => number[];
-/**
  * get the surrounding cells based on current XY and canvasGrid as boundary
  * @param x {number} - x coordinate of current cell
  * @param y {number} - y coordinate of current cell
