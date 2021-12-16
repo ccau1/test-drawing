@@ -3,19 +3,23 @@
   "version": "1.0.0",
   "description": "test challenge for drawing",
   "scripts": {
-    "test": "jest",
+    "test": "jest --collect-coverage",
     "dev": "nodemon",
     "build": "tsc",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
-    "i": "yarn install --frozen-lockfile"
+    "i": "yarn install --frozen-lockfile && cd example && yarn install",
+    "example": "cd example && yarn start"
   },
   "author": "Calvin Au",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "jest": "^27.4.5",
     "nodemon": "^2.0.15",
-    "typescript": "^4.5.4",
-    "ts-node": "^10.4.0"
+    "ts-jest": "^27.1.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
   }
 }

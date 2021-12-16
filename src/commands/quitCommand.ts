@@ -5,5 +5,5 @@ export default {
     // destroy grid
     canvas.destroyGrid();
   },
-  alias: ["create"],
+  alias: ["quit"],
 } as Command;

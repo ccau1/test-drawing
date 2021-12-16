@@ -11,7 +11,7 @@ export default {
       h = parseInt(args[1], 10);
 
     // if either one of them is NaN, throw error
-    if (w === NaN || h === NaN) throw new Error("invalid numbers");
+    if (isNaN(w) || isNaN(h)) throw new Error("invalid numbers");
 
     // generate grid from w and h
     canvas.generateCanvasGrid(w, h);

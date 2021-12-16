@@ -10,10 +10,11 @@ export const boundNumber = (
   number: number,
   boundary: { max?: number; min?: number }
 ) => {
-  return Math.max(
-    Math.min(number, boundary.max || number),
-    boundary.min || number
-  );
+  let result = number;
+  if (boundary.max !== undefined) result = Math.min(result, boundary.max);
+  if (boundary.min !== undefined) result = Math.max(result, boundary.min);
+
+  return result;
 };
 
 /**
@@ -27,7 +28,7 @@ export const getSurroundingCells = (
   x: number,
   y: number,
   canvasGrid: CanvasGrid
-) => {
+): Array<{ x: number; y: number }> => {
   const surroundingCells = [];
   let pos;
   for (let xx = -1; xx <= 1; xx++) {
@@ -43,8 +44,9 @@ export const getSurroundingCells = (
         pos.x > canvasGrid.length - 1 ||
         pos.y < 0 ||
         pos.y > (canvasGrid[0] || []).length - 1
-      )
+      ) {
         continue;
+      }
       // store XY
       surroundingCells.push(pos);
     }
@@ -69,6 +71,7 @@ export const fillSurrounding = (
   canvasGrid: CanvasGrid,
   filledCells: { [xy: string]: boolean } = {}
 ) => {
+  if (x < 0 || y < 0) return;
   canvasGrid[x][y] = setFill;
   filledCells[x + "_" + y] = true;
   const surroundingCells = getSurroundingCells(x, y, canvasGrid);

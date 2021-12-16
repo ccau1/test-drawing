@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import useForceUpdate from "./hooks/useForceUpdate";
 
 function App() {
+  // define variables
   const canvas = useRef(new Canvas()).current;
   const forceUpdate = useForceUpdate();
   const commandHistoryRef = useRef<HTMLDivElement>(null);
@@ -12,6 +13,7 @@ function App() {
     Array<{ text: string; color?: string }>
   >([]);
 
+  // on set command history, handle saving history and scrolling to latest
   const setCommandHistory = (
     history: Array<{ text: string; color?: string }>
   ) => {
@@ -26,6 +28,8 @@ function App() {
     );
   };
 
+  // on submitting command, render the command into action
+  // and update the command history
   const onSubmitCommandString = (text: string) => {
     const [type, ...args] = text.trim().split(/\s+/);
     commandHistory.push({ text });
@@ -34,21 +38,11 @@ function App() {
     try {
       canvas.takeAction(type, args);
     } catch (err) {
-      // commandHistory.push({ text: err as string, color: "red" });
+      commandHistory.push({ text: (err as Error).message, color: "red" });
     }
     setCommandHistory([...commandHistory]);
     forceUpdate();
   };
-
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      onSubmitCommandString("C 20 4");
-      onSubmitCommandString("L 1 2 6 2");
-      onSubmitCommandString("L 6 3 6 4");
-      onSubmitCommandString("R 14 1 18 3");
-      onSubmitCommandString("B 10 3 o");
-    }, 500);
-  }, []);
 
   return (
     <div className={styles.wrapper}>
