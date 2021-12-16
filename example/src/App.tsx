@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 import Canvas from "@library/lib/esm";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useForceUpdate from "./hooks/useForceUpdate";
 
 function App() {
